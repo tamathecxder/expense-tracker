@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:expense_tracker/enums/expense_category.dart';
 import 'package:uuid/uuid.dart';
 
 Uuid _uuid = const Uuid();
@@ -15,5 +15,5 @@ class Expense {
   final String title;
   final double amount;
   final DateTime date;
-  final Category category;
+  final ExpenseCategory category;
 }
