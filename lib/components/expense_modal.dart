@@ -8,10 +8,15 @@ class ExpenseModal extends StatefulWidget {
 }
 
 class _ExpenseModalState extends State<ExpenseModal> {
-  String _titleValue = '';
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _amountController = TextEditingController();
 
-  _saveTitleInput(String value) {
-    _titleValue = value;
+  @override
+  void dispose() {
+    super.dispose();
+
+    _titleController.dispose();
+    _amountController.dispose();
   }
 
   @override
@@ -22,18 +27,29 @@ class _ExpenseModalState extends State<ExpenseModal> {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            onChanged: _saveTitleInput,
+            controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(labelText: 'Title'),
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            controller: _amountController,
+            decoration: const InputDecoration(labelText: 'Amount'),
           ),
           Row(
             children: [
               ElevatedButton(
                 onPressed: () {
-                  print(_titleValue);
+                  print(_titleController.text);
                 },
                 child: const Text(
                   'Save Expense',
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Cancel',
                 ),
               ),
             ],
