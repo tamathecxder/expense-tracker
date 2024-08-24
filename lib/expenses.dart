@@ -1,3 +1,4 @@
+import 'package:expense_tracker/components/expense_modal.dart';
 import 'package:expense_tracker/components/expenses_list.dart';
 import 'package:expense_tracker/enums/expense_category.dart';
 import 'package:expense_tracker/models/expense.dart';
@@ -35,7 +36,8 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const Text('xxxxxxxxxxxx'),
+      isScrollControlled: true,
+      builder: (ctx) => const ExpenseModal(),
     );
   }
 
