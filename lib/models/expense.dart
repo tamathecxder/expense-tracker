@@ -8,11 +8,11 @@ Uuid _uuid = const Uuid();
 final formatter = DateFormat('dd/MM/yyyy');
 
 const Map<ExpenseCategory, IconData> categoryIcons = {
-  ExpenseCategory.food: Icons.lunch_dining,
+  ExpenseCategory.food: Icons.restaurant_outlined,
   ExpenseCategory.travel: Icons.flight_takeoff,
-  ExpenseCategory.leisure: Icons.movie,
-  ExpenseCategory.work: Icons.work,
-  ExpenseCategory.other: Icons.more_horiz,
+  ExpenseCategory.leisure: Icons.movie_outlined,
+  ExpenseCategory.work: Icons.work_outline,
+  ExpenseCategory.other: Icons.miscellaneous_services_sharp,
 };
 
 class Expense {

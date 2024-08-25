@@ -15,16 +15,21 @@ class ExpenseItem extends StatelessWidget {
           horizontal: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               expense.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                Text("\$${expense.amount.toStringAsFixed(2)}"),
+                Text("\$ ${expense.amount.toStringAsFixed(2)}"),
                 const Spacer(),
                 Row(
                   children: [

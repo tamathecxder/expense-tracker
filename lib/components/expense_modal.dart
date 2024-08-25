@@ -110,7 +110,6 @@ class _ExpenseModalState extends State<ExpenseModal> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _titleController,
