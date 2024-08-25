@@ -51,6 +51,47 @@ class _ExpenseModalState extends State<ExpenseModal> {
     });
   }
 
+  void _submitExpense() {
+    var enteredAmount = double.tryParse(_amountController.text);
+
+    List<Map<String, Object>> validations = [
+      {
+        'value': _titleController.text.trim().isEmpty,
+        'message': 'Title cannot be empty',
+      },
+      {
+        'value': enteredAmount == null || enteredAmount <= 0,
+        'message': 'Amount cannot be empty or less than or equal to 0',
+      },
+      {
+        'value': _selectedDate == null,
+        'message': 'Date cannot be empty',
+      },
+    ];
+
+    for (var validation in validations) {
+      if (validation['value'] as bool) {
+        var message = validation['message'] as String;
+
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Invalid Input'),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              )
+            ],
+          ),
+        );
+
+        return;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -133,9 +174,7 @@ class _ExpenseModalState extends State<ExpenseModal> {
                 width: 10,
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                },
+                onPressed: _submitExpense,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[400],
                   foregroundColor: Colors.white,
