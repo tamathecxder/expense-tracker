@@ -1,5 +1,7 @@
+import 'package:expense_tracker/enums/expense_category.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseModal extends StatefulWidget {
   const ExpenseModal({super.key});
@@ -9,9 +11,10 @@ class ExpenseModal extends StatefulWidget {
 }
 
 class _ExpenseModalState extends State<ExpenseModal> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
   DateTime? _selectedDate;
+  ExpenseCategory _selectedCategory = ExpenseCategory.leisure;
 
   @override
   void dispose() {
@@ -36,6 +39,16 @@ class _ExpenseModalState extends State<ExpenseModal> {
         _selectedDate = selectedDate;
       });
     }
+  }
+
+  void _onCategorySelected(ExpenseCategory? value) {
+    if (value == null) {
+      return;
+    }
+
+    setState(() {
+      _selectedCategory = value;
+    });
   }
 
   @override
@@ -87,10 +100,27 @@ class _ExpenseModalState extends State<ExpenseModal> {
             ],
           ),
           const SizedBox(
-            height: 20,
+            height: 100,
           ),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: ExpenseCategory.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          toBeginningOfSentenceCase(
+                            category.name,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: _onCategorySelected,
+              ),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
