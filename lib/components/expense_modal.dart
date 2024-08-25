@@ -1,3 +1,4 @@
+import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseModal extends StatefulWidget {
@@ -10,6 +11,7 @@ class ExpenseModal extends StatefulWidget {
 class _ExpenseModalState extends State<ExpenseModal> {
   TextEditingController _titleController = TextEditingController();
   TextEditingController _amountController = TextEditingController();
+  DateTime? _selectedDate;
 
   @override
   void dispose() {
@@ -19,11 +21,21 @@ class _ExpenseModalState extends State<ExpenseModal> {
     _amountController.dispose();
   }
 
-  void _openDatePicker() {
+  void _openDatePicker() async {
     var firstDate = DateTime(DateTime.now().year - 1);
     var lastDate = DateTime.now();
 
-    showDatePicker(context: context, firstDate: firstDate, lastDate: lastDate);
+    var selectedDate = await showDatePicker(
+      context: context,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        _selectedDate = selectedDate;
+      });
+    }
   }
 
   @override
@@ -58,10 +70,17 @@ class _ExpenseModalState extends State<ExpenseModal> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Selected Month"),
+                    Text(
+                      _selectedDate != null
+                          ? formatter.format(_selectedDate!)
+                          : 'No Date Chosen',
+                    ),
                     IconButton(
-                        onPressed: _openDatePicker,
-                        icon: Icon(Icons.calendar_month))
+                      onPressed: _openDatePicker,
+                      icon: const Icon(
+                        Icons.calendar_month,
+                      ),
+                    )
                   ],
                 ),
               ),
