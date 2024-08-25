@@ -108,7 +108,7 @@ class _ExpenseModalState extends State<ExpenseModal> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
       child: Column(
         children: [
           TextField(
@@ -153,7 +153,7 @@ class _ExpenseModalState extends State<ExpenseModal> {
             ],
           ),
           const SizedBox(
-            height: 100,
+            height: 40,
           ),
           Row(
             children: [
