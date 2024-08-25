@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ExpenseModal extends StatefulWidget {
-  const ExpenseModal({super.key});
+  const ExpenseModal({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<ExpenseModal> createState() => _ExpenseModalState();
@@ -90,6 +92,17 @@ class _ExpenseModalState extends State<ExpenseModal> {
         return;
       }
     }
+
+    widget.onAddExpense(
+      Expense(
+        title: _titleController.text,
+        amount: enteredAmount!,
+        date: _selectedDate!,
+        category: _selectedCategory,
+      ),
+    );
+
+    Navigator.pop(context);
   }
 
   @override
