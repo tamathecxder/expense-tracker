@@ -1,3 +1,4 @@
+import 'package:expense_tracker/components/chart/chart.dart';
 import 'package:expense_tracker/components/expense_modal.dart';
 import 'package:expense_tracker/components/expenses_list.dart';
 import 'package:expense_tracker/enums/expense_category.dart';
@@ -101,6 +102,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: displayedContent,
           ),
