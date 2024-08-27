@@ -5,6 +5,11 @@ void main() {
   runApp(const MyApp());
 }
 
+// green for finance app
+var kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 99, 139, 96),
+);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,7 +18,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: kColorScheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.onPrimaryContainer,
+          foregroundColor: kColorScheme.primaryContainer,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorScheme.primaryContainer,
+          ),
+        ),
         useMaterial3: true,
       ),
       home: const Expenses(),

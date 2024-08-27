@@ -187,10 +187,6 @@ class _ExpenseModalState extends State<ExpenseModal> {
               ),
               ElevatedButton(
                 onPressed: _submitExpense,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[400],
-                  foregroundColor: Colors.white,
-                ),
                 child: const Text(
                   'Save Expense',
                 ),
