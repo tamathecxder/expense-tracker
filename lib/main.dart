@@ -34,6 +34,13 @@ class MyApp extends StatelessWidget {
             vertical: 8,
           ),
         ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 20,
+              ),
+            ),
         useMaterial3: true,
       ),
       home: const Expenses(),
