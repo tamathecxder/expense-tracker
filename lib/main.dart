@@ -9,6 +9,19 @@ var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 99, 139, 96),
 );
 
+var kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 5, 99, 0),
+);
+
+var cardTheme = const CardTheme().copyWith(
+  color: kColorScheme.secondaryContainer,
+  margin: const EdgeInsets.symmetric(
+    horizontal: 12,
+    vertical: 8,
+  ),
+);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -16,6 +29,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[900],
+          foregroundColor: kColorScheme.onPrimary,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorScheme.primary,
+            foregroundColor: kColorScheme.onPrimary,
+          ),
+        ),
+        cardTheme: cardTheme.copyWith(
+          color: Colors.grey[800],
+        ),
+        textTheme: ThemeData.dark().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 20,
+              ),
+              titleMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.primaryContainer,
+                fontSize: 16,
+              ),
+              bodyLarge: const TextStyle(
+                color: Colors.white70,
+              ),
+            ),
+        iconTheme: IconThemeData(
+          color: kColorScheme.onPrimary,
+        ),
+      ),
       theme: ThemeData(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -27,13 +75,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: kColorScheme.primaryContainer,
           ),
         ),
-        cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 8,
-          ),
-        ),
+        cardTheme: cardTheme,
         textTheme: ThemeData().textTheme.copyWith(
               titleLarge: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -48,6 +90,7 @@ class MyApp extends StatelessWidget {
             ),
         useMaterial3: true,
       ),
+      themeMode: ThemeMode.system,
       home: const Expenses(),
     );
   }
