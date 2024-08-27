@@ -40,6 +40,11 @@ class MyApp extends StatelessWidget {
                 color: kColorScheme.onSecondaryContainer,
                 fontSize: 20,
               ),
+              titleMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 16,
+              ),
             ),
         useMaterial3: true,
       ),
