@@ -5,7 +5,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// green for finance app
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 99, 139, 96),
 );
@@ -26,6 +25,13 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: kColorScheme.primaryContainer,
+          ),
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: kColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 8,
           ),
         ),
         useMaterial3: true,
