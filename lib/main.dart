@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (fn) => {
-      runApp(const MyApp()),
-    },
-  );
+  // // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+  // //   (fn) => {
+  // //   },
+  // // );
+  runApp(const MyApp());
 }
 
 var kColorScheme = ColorScheme.fromSeed(
